@@ -155,7 +155,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 			return getResourceByPath(location);
 		}
 		else if (location.startsWith(CLASSPATH_URL_PREFIX)) {
-			// 如果是类路径的方式，那需要使用ClassPathResource 来得到bean 文件的资源对象
+			// 如果是类路径的方式，那需要使用ClassPathResource来得到bean文件的资源对象
 			return new ClassPathResource(location.substring(CLASSPATH_URL_PREFIX.length()), getClassLoader());
 		}
 		else {

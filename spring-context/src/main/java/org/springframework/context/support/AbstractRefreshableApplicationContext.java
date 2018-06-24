@@ -127,6 +127,10 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			destroyBeans();
 			closeBeanFactory();
 		}
+		/**
+		 * 创建并设置持有的DefaultListableBeanFactory
+		 * 调用loadBeanDefinitions载入BeanDefinition的信息
+		 */
 		try {
 			// 创建IoC容器
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
@@ -206,6 +210,8 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowCircularReferences
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowRawInjectionDespiteWrapping
 	 */
+	// getInternalParentBeanFactory的具体实现可以参看AbstractApplicationContext中的实现，会根据容器已有的双亲IOC容器的信息来生成
+	// DefaultListableBeanFactory的双亲IOC容器
 	protected DefaultListableBeanFactory createBeanFactory() {
 		return new DefaultListableBeanFactory(getInternalParentBeanFactory());
 	}
@@ -242,6 +248,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * @see org.springframework.beans.factory.support.PropertiesBeanDefinitionReader
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 	 */
+	// 模板方法，通过子类来实现多种的载入方式
 	protected abstract void loadBeanDefinitions(DefaultListableBeanFactory beanFactory)
 			throws BeansException, IOException;
 

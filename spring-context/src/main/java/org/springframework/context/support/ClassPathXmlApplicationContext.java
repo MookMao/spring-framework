@@ -137,10 +137,11 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	public ClassPathXmlApplicationContext(
 			String[] configLocations, boolean refresh, @Nullable ApplicationContext parent)
 			throws BeansException {
-
+		// 设置BeanDefinition资源加载器：默认实现就是DefaultResourceLoader
 		super(parent);
 		setConfigLocations(configLocations);
 		if (refresh) {
+			// 启动BeanDefinition的载入过程
 			refresh();
 		}
 	}
