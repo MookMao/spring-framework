@@ -35,10 +35,17 @@ public class PersonTest {
 //		context.refresh();
 //		System.out.println(context.getBean("person", Person.class).getClass().getName());
 
-/**
-		// XmlBeanFactory容器创建过程
+		// ApplicationContext容器创建过程
+
+	}
+
+	@Test
+	public void test_xmlBeanFactory() {
+		/**
+		 * 参考XmlBeanFactory的实现，以编程的方式使用DefaultListableBeanFactory
+		 */
 		// 根据Xml配置文件创建Resource资源对象，该对象中包含了BeanDefinition的信息
-		ClassPathResource resource = new ClassPathResource("PersonTest.xml");
+		ClassPathResource resource = new ClassPathResource("com/mook/PersonTest.xml");
 		// 创建DefaultListableBeanFactory
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		// 创建XmlBeanDefinitionReader读取器，用于载入BeanDefinition。
@@ -48,10 +55,5 @@ public class PersonTest {
 		// 完成后Bean就成功的放置到IOC容器当中，以后我们就可以从中取得Bean来使用
 		reader.loadBeanDefinitions(resource);
 		System.out.println(((Person)factory.getBean("person")).getClass().getName());
-*/
-
-		// ApplicationContext容器创建过程
-
-
 	}
 }
